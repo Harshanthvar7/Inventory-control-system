@@ -1,0 +1,268 @@
+/* ============================================================
+   Stock Movement Module — stock-movement.css
+   Extends shared/style.css. Do not duplicate base classes.
+   ============================================================ */
+
+/* ---------- Page Layout ---------- */
+.sm-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Form card: no hover lift (it's a primary action surface) */
+.sm-form-card {
+  position: sticky;
+  top: 80px;
+}
+
+.sm-form-card:hover {
+  box-shadow: 0 1px 4px rgba(15, 45, 86, 0.07);
+}
+
+/* ---------- IN / OUT Toggle ---------- */
+.sm-type-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.375rem;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.sm-type-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  color: #64748b;
+  background: transparent;
+}
+
+.sm-type-btn:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.sm-type-btn.active[data-type="IN"] {
+  background: #ffffff;
+  color: #15803d;
+  box-shadow: 0 1px 6px rgba(15, 45, 86, 0.12);
+}
+
+.sm-type-btn.active[data-type="OUT"] {
+  background: #ffffff;
+  color: #b91c1c;
+  box-shadow: 0 1px 6px rgba(15, 45, 86, 0.12);
+}
+
+/* ---------- Stock Preview Chip ---------- */
+.sm-stock-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.375rem;
+  min-height: 1.5rem;
+}
+
+.sm-stock-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sm-stock-chip.low {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.sm-stock-chip.critical {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+/* ---------- Save Button ---------- */
+.sm-save-btn {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9375rem;
+  border-radius: 9px;
+  transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.1s ease;
+}
+
+.sm-save-btn.in-mode {
+  background: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.35);
+}
+
+.sm-save-btn.in-mode:hover:not(:disabled) {
+  background: #15803d;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
+}
+
+.sm-save-btn.out-mode {
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+}
+
+.sm-save-btn.out-mode:hover:not(:disabled) {
+  background: #b91c1c;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+}
+
+/* ---------- Feedback Banner ---------- */
+.sm-feedback {
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+.sm-feedback.visible {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.sm-feedback-inner {
+  padding: 0.875rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.sm-feedback-inner.success {
+  background: #dcfce7;
+  color: #14532d;
+  border-left: 4px solid #22c55e;
+}
+
+.sm-feedback-inner.error {
+  background: #fee2e2;
+  color: #7f1d1d;
+  border-left: 4px solid #ef4444;
+}
+
+.sm-feedback-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+.sm-feedback-new-stock {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
+/* ---------- Recent Movements Table ---------- */
+.sm-movements-card {
+  min-height: 300px;
+}
+
+.sm-movements-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sm-movements-count {
+  font-size: 0.8125rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.sm-type-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.sm-type-pill.in {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.sm-type-pill.out {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.sm-qty-cell {
+  font-weight: 700;
+  color: #0f2d56;
+}
+
+.sm-note-cell {
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #64748b;
+  font-size: 0.8125rem;
+}
+
+.sm-date-cell {
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+/* Highlight the newest-added row */
+@keyframes sm-row-flash {
+  0%   { background: #dbeafe; }
+  100% { background: transparent; }
+}
+
+.sm-row-new {
+  animation: sm-row-flash 2s ease forwards;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .sm-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sm-form-card {
+    position: static;
+  }
+}

@@ -1,0 +1,343 @@
+/* ============================================================
+   Dashboard Module — dashboard.css
+   Extends shared/style.css. Do not duplicate base classes.
+   ============================================================ */
+
+/* ---------- Stats Row ---------- */
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.stat-card {
+  cursor: default;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 6px 20px rgba(15, 45, 86, 0.12);
+  transform: translateY(-2px);
+}
+
+.stat-card .stat-body {
+  flex: 1;
+}
+
+.stat-card .stat-trend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.stat-card .stat-trend.up    { color: #16a34a; }
+.stat-card .stat-trend.down  { color: #dc2626; }
+.stat-card .stat-trend.neutral { color: #94a3b8; }
+
+/* ---------- Two-Column Section ---------- */
+.dash-mid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+/* ---------- Low-Stock Panel ---------- */
+.dash-low-stock {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.low-stock-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.low-stock-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.875rem;
+  border-radius: 8px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  transition: background 0.18s;
+  gap: 0.5rem;
+}
+
+.low-stock-item.critical {
+  background: #fff1f2;
+  border-color: #fca5a5;
+}
+
+.low-stock-item:hover {
+  background: #fef3c7;
+}
+
+.low-stock-item.critical:hover {
+  background: #fee2e2;
+}
+
+.lsi-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e293b;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lsi-category {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: block;
+  font-weight: 400;
+}
+
+.lsi-stock {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #b45309;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.lsi-stock.critical {
+  color: #b91c1c;
+}
+
+.dash-all-clear {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.dash-all-clear .all-clear-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.dash-all-clear p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #16a34a;
+  margin: 0;
+}
+
+/* ---------- Recent Movements Feed ---------- */
+.dash-recent-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s;
+}
+
+.feed-item:last-child {
+  border-bottom: none;
+}
+
+.feed-item:hover {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: 0 -0.5rem;
+}
+
+.feed-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.feed-dot.in  { background: #dcfce7; }
+.feed-dot.out { background: #fee2e2; }
+
+.feed-body { flex: 1; min-width: 0; }
+
+.feed-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feed-meta {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 0.1rem;
+}
+
+.feed-qty {
+  font-size: 0.875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.feed-qty.in  { color: #15803d; }
+.feed-qty.out { color: #b91c1c; }
+
+/* ---------- Full Stock Table Section ---------- */
+.dash-stock-section {
+  margin-bottom: 0.5rem;
+}
+
+.dash-table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dash-search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 320px;
+}
+
+.dash-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.dash-search {
+  width: 100%;
+  padding: 0.55rem 0.875rem 0.55rem 2.25rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #1e293b;
+  background: #ffffff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.dash-search:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.dash-search::placeholder {
+  color: #94a3b8;
+}
+
+.dash-results-count {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+/* Low-stock row highlight in main table */
+tbody tr.row-low-stock {
+  background: #fffbeb;
+}
+
+tbody tr.row-low-stock:hover {
+  background: #fef3c7;
+}
+
+tbody tr.row-critical {
+  background: #fff1f2;
+}
+
+tbody tr.row-critical:hover {
+  background: #fee2e2;
+}
+
+.dash-stock-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dash-stock-bar {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.dash-stock-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.dash-stock-fill.ok       { background: #22c55e; }
+.dash-stock-fill.low      { background: #f59e0b; }
+.dash-stock-fill.critical { background: #ef4444; }
+
+.dash-stock-num {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0f2d56;
+  min-width: 2rem;
+  text-align: right;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .dash-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dash-mid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-table-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dash-search-wrap {
+    max-width: none;
+  }
+}

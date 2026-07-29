@@ -1,0 +1,299 @@
+/* ============================================================
+   Products Module — products.css
+   Extends shared/style.css. Do not duplicate base classes.
+   ============================================================ */
+
+/* ---------- Toolbar ---------- */
+.prod-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.prod-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.prod-search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 280px;
+}
+
+.prod-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.prod-search {
+  width: 100%;
+  padding: 0.55rem 0.875rem 0.55rem 2.25rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #1e293b;
+  background: #ffffff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.prod-search:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.prod-search::placeholder { color: #94a3b8; }
+
+.prod-count {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+/* ---------- Form Panel ---------- */
+.prod-form-panel {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-bottom 0.35s ease;
+}
+
+.prod-form-panel.open {
+  max-height: 700px;
+  opacity: 1;
+  margin-bottom: 1.5rem;
+}
+
+.prod-form-card {
+  border: 1.5px solid #3b82f6;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.12);
+}
+
+.prod-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.125rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.prod-form-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f2d56;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prod-form-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 1rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.prod-form-close:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.prod-form-body {
+  padding: 1.375rem 1.5rem 1.5rem;
+}
+
+.prod-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.25rem;
+}
+
+.prod-form-row-full {
+  grid-column: 1 / -1;
+}
+
+.prod-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.375rem;
+}
+
+/* Form field error */
+.field-error {
+  font-size: 0.78rem;
+  color: #ef4444;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.field-error.visible {
+  display: block;
+}
+
+/* ---------- Products Table ---------- */
+.prod-table-wrap {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(15, 45, 86, 0.07);
+  overflow: hidden;
+}
+
+/* Inactive rows */
+tbody tr.row-inactive {
+  opacity: 0.5;
+  background: #f8fafc;
+}
+
+tbody tr.row-inactive:hover {
+  background: #f1f5f9;
+  opacity: 0.65;
+}
+
+tbody tr.row-inactive td {
+  color: #94a3b8;
+}
+
+/* Stock indicator in table */
+.prod-stock-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prod-stock-num {
+  font-weight: 700;
+  color: #0f2d56;
+  min-width: 2.5rem;
+}
+
+.prod-stock-num.low      { color: #b45309; }
+.prod-stock-num.critical { color: #b91c1c; }
+
+/* ---------- Action Buttons in Table ---------- */
+.prod-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  white-space: nowrap;
+}
+
+/* ---------- Inline Deactivate Confirm ---------- */
+.prod-confirm-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fade-in-left 0.2s ease;
+}
+
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.prod-confirm-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7f1d1d;
+  white-space: nowrap;
+}
+
+/* ---------- Category Filter Tabs ---------- */
+.prod-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.prod-filter-tab {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.prod-filter-tab:hover {
+  border-color: #94a3b8;
+  color: #334155;
+}
+
+.prod-filter-tab.active {
+  background: #0f2d56;
+  border-color: #0f2d56;
+  color: #ffffff;
+}
+
+/* ---------- Threshold indicator ---------- */
+.prod-threshold {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .prod-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prod-form-row-full {
+    grid-column: 1;
+  }
+
+  .prod-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prod-toolbar-left {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .prod-search-wrap {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .prod-form-panel.open {
+    max-height: 1000px;
+  }
+
+  .prod-confirm-wrap {
+    flex-wrap: wrap;
+  }
+}
