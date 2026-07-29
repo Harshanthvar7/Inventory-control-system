@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+        content="InvenTrack Dashboard — Overview of stock levels, recent movements, and low-stock alerts." />
+  <title>Dashboard — InvenTrack</title>
+  <link rel="stylesheet" href="shared/style.css" />
+</head>
+<body>
+
+  <!-- Nav bar injected by shared/nav.js -->
+  <script src="shared/nav.js" defer></script>
+
+  <main class="page-wrapper" id="main-content">
+    <header class="page-header">
+      <h1>Dashboard</h1>
+      <p>Stock overview, recent movements, and low-stock alerts.</p>
+    </header>
+
+    <!-- Module root — dashboard widgets injected here by dashboard module -->
+    <div id="module-root"></div>
+  </main>
+
+  <!-- Shared data layer (available globally as window.InvenTrack) -->
+  <script src="shared/data.js"></script>
+
+</body>
+</html>
