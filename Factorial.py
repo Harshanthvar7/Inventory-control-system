@@ -8,5 +8,5 @@ def factorial(n):
  
  
 if __name__ == "__main__":
-    n = int(sys.argv[1]) if len(sys.argv) > 1 else 10
+    n = int(sys.argv[1]) if len(sys.argv) > 1 else 15
     print(f"Factorial of {n}: {factorial(n)}")
