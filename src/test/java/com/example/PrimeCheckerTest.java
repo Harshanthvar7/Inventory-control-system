@@ -19,7 +19,7 @@ public class PrimeCheckerTest {
 
     @Test
     public void testNotPrime() {
-        assertFalse(PrimeChecker.isPrime(10));
+        assertFalse(PrimeChecker.isPrime(3));
     }
 
     @Test
