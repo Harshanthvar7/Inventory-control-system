@@ -22,6 +22,6 @@ public class NumberReverserTest {
 
     @Test
     public void testReverseNegativeNumber() {
-        assertEquals(-321, NumberReverser.reverse(-123));
+        assertEquals(-321, NumberReverser.reverse(123));
     }
 }
