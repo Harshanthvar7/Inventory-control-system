@@ -47,6 +47,7 @@ pipeline {
             steps {
                 powershell '''
                     docker build -t "$env:IMAGE_NAME`:$env:IMAGE_TAG" .
+
                     if ($LASTEXITCODE -ne 0) {
                         throw "Docker image build failed."
                     }
@@ -58,9 +59,12 @@ pipeline {
             steps {
                 powershell '''
                     docker image inspect "$env:IMAGE_NAME`:$env:IMAGE_TAG"
+
                     if ($LASTEXITCODE -ne 0) {
                         throw "Docker image verification failed."
                     }
+
+                    Write-Host "Docker image verified successfully."
                 '''
             }
         }
@@ -75,15 +79,38 @@ pipeline {
                     )
                 ]) {
                     powershell '''
-                        $env:DOCKERHUB_TOKEN | docker login -u "$env:DOCKERHUB_USER" --password-stdin
-                        if ($LASTEXITCODE -ne 0) {
-                            throw "Docker Hub login failed."
+                        $ErrorActionPreference = "Stop"
+
+                        if ([string]::IsNullOrWhiteSpace($env:DOCKERHUB_USER)) {
+                            throw "Docker Hub username is empty."
                         }
 
-                        docker push "$env:IMAGE_NAME`:$env:IMAGE_TAG"
-                        if ($LASTEXITCODE -ne 0) {
-                            throw "Docker Hub push failed."
+                        if ([string]::IsNullOrWhiteSpace($env:DOCKERHUB_TOKEN)) {
+                            throw "Docker Hub token is empty."
                         }
+
+                        Write-Host "Docker Hub username is configured."
+                        Write-Host "Docker Hub token is present."
+
+                        $token = $env:DOCKERHUB_TOKEN.Trim()
+
+                        $token | docker login `
+                            --username $env:DOCKERHUB_USER `
+                            --password-stdin
+
+                        if ($LASTEXITCODE -ne 0) {
+                            throw "Docker Hub authentication failed. Check the saved Jenkins credential."
+                        }
+
+                        Write-Host "Docker Hub authentication successful."
+
+                        docker push "$env:IMAGE_NAME`:$env:IMAGE_TAG"
+
+                        if ($LASTEXITCODE -ne 0) {
+                            throw "Docker image push failed."
+                        }
+
+                        Write-Host "Docker image pushed successfully."
                     '''
                 }
             }
@@ -93,11 +120,13 @@ pipeline {
             steps {
                 powershell '''
                     kubectl apply -f deployment.yaml
+
                     if ($LASTEXITCODE -ne 0) {
                         throw "Kubernetes deployment apply failed."
                     }
 
                     kubectl rollout status deployment/inventrack-products --timeout=120s
+
                     if ($LASTEXITCODE -ne 0) {
                         throw "Kubernetes rollout failed."
                     }
@@ -113,9 +142,11 @@ pipeline {
         success {
             echo 'InvenTrack CI/CD pipeline completed successfully.'
         }
+
         failure {
             echo 'InvenTrack CI/CD pipeline failed. Check the stage logs.'
         }
+
         always {
             echo 'Pipeline execution finished.'
         }
