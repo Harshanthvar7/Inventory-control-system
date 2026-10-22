@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: inventrack-products
-        image: lakshminarayananr0411/inventory-control-system:products-latest
+        image: lakshminarayananr0411/inventory-control-system:products-v1
         ports:
         - containerPort: 80
 ---
