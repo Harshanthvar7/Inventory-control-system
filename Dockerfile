@@ -14,4 +14,7 @@ COPY stock-movement.html .
 COPY stock-movement.css .
 COPY stock-movement.js .
 
+# Include shared application assets
+COPY shared/ ./shared/
+
 EXPOSE 80
